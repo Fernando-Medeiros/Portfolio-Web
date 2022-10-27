@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'homePage',
-    'authUser'
+    'authUser',
+
+    'cloudinary_storage',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -138,5 +141,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 LOGIN_REDIRECT_URL = 'homePage:profile'
 LOGIN_URL = 'authUser:login'
+
+
+CLOUDINARY_STORAGE = {}
+
+DEFAULT_FILE_STORAGE = ''
