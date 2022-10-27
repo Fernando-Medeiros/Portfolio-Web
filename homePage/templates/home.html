@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content%}
+
+<main class="container m-auto p-3 flex flex-col gap-10 bg-slate-900">
+    
+
+    <!-- ABOUT -->
+    <section id="about" class="grid grid-cols-2 w-full h-screen">
+
+        <span class="items-center text-center m-auto">
+            ............................................................text
+            ............................................................text
+            ............................................................text
+        </span>
+
+        <div class="flex flex-col justify-center items-center text-center gap-5 p-2">
+            <img class="rounded-full w-80" src="https://github.com/Fernando-Medeiros.png">
+            <span> Fernando A. Medeiros </span>
+        </div>
+    </section>
+
+
+
+    <!-- STACKS -->
+    <section id="stacks" class="w-full h-screen">
+        <h1>
+            Hard skills
+        </h1>
+        <div class="grid grid-cols-auto bg-black w-full h-full">
+
+            <div class="flex flex-row flex-wrap justify-between items-center">
+                <img width="48px" src="https://img.icons8.com/color/344/python--v1.png">
+                <img width="48px" src="https://findicons.com/files/icons/2773/pictonic_free/128/prog_django.png">
+                <img width="48px" src="https://img.icons8.com/color/344/flask.png">
+    
+                <img width="48px" src="https://img.icons8.com/color/344/javascript--v1.png">
+                <img width="48px" src="https://img.icons8.com/color/344/html-5--v1.png">
+                <img width="48px" src="https://img.icons8.com/color/344/css3.png">
+    
+                <img width="48px" src="https://img.icons8.com/color/344/postgreesql.png">
+                <img width="48px" src="https://img.icons8.com/color/344/mysql-logo.png">
+                <img width="48px" src="https://img.icons8.com/color/452/mongodb.png">
+            </div>
+
+            <p>.............. Sobre</p>
+        </div>
+    </section>
+
+
+
+    <!-- PERSONAL PROJECTS -->
+    <section id="projects" class="bg-black grid grid-cols-auto w-full h-screen">
+        <h1>
+            Projetos
+        </h1>
+
+        <div class="grid grid-cols-2 gap-5 p-2">
+
+        {% for project in allProjects %}
+
+                <div class="flex flex-col items-center max-h-min w-full gap-8 p-5">
+                    
+                    <img src="{{ project.thumb.url }}" class="rounded w-full h-96 object-cover">
+                    <h2> {{ project.title }} </h2>
+                    <p> {{ project.description }} </p>
+
+
+                    <div class="flex flex-row justify-end gap-10 w-full">
+                        <a href="{{project.github}}" target="blank"
+                        class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300">
+                            <ion-icon name="logo-github" class="text-4xl"></ion-icon>                    
+                        </a>
+
+                        <a href="{{project.link}}" target="blank"
+                        class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300">
+                            <ion-icon name="link-outline" class="text-4xl"></ion-icon>    
+                        </a>
+                    </div>
+
+                </div>
+        {% endfor %}
+        
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}
