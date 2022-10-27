@@ -104,7 +104,7 @@ venv.bak/
 .mypy_cache/
 
 .secrets
-.env
+env
 .vscode/launch.json
 .idea
 .vscode

@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g+j=tis)2k75akiabe$8b#hr1_z8*thm7q1emg(ufd$*!#)k#n'
+SECRET_KEY = env.get_value('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.get_value('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = list(env.get_value('ALLOWED_HOSTS').split(';'))
 
 
 # Application definition
@@ -37,10 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'homePage',
     'authUser',
-
     'cloudinary_storage',
     'cloudinary'
 ]
@@ -146,6 +150,10 @@ LOGIN_REDIRECT_URL = 'homePage:profile'
 LOGIN_URL = 'authUser:login'
 
 
-CLOUDINARY_STORAGE = {}
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env.get_value('CLOUD_NAME'),
+    'API_KEY': env.get_value('API_KEY'),
+    'API_SECRET': env.get_value('API_SECRET')
+    }
 
-DEFAULT_FILE_STORAGE = ''
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
