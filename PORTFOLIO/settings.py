@@ -88,12 +88,25 @@ WSGI_APPLICATION = 'PORTFOLIO.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+DATABASE_GOOGE_CLOUD_POSTGRESQL =  {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': env.get_value('DATABASE_HOST'),
+        'USER': env.get_value('DATABASE_USERNAME'),
+        'PASSWORD': env.get_value('DATABASE_PASSWORD'),
+        'NAME': env.get_value('DATABASE_NAME'),
     }
 }
+
+DATABASES = DATABASE_GOOGE_CLOUD_POSTGRESQL
 
 
 # Password validation
