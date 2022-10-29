@@ -2,6 +2,17 @@ from django.db import models
 from django.utils import timezone
 
 
+STACKS_CATEGORY = (
+    ('BACKEND', 'Back-end'),
+    ('FRONTEND', 'Front-end'),
+    ('DATABASE', 'Database'),
+    ('FRAMEWORK', 'Framework'),
+    ('CLOUD', 'Cloud'),
+    ('LIBS', 'libraries'),
+    ('TOOL', 'Tool'),
+)
+
+
 class Project(models.Model):
     title = models.CharField(max_length=100)
     template = models.ImageField(upload_to='project_templates')
@@ -28,11 +39,11 @@ class ProjectDetail(models.Model):
 
 
 class Stack(models.Model):
-    projects = models.ManyToManyField('Project')
-    title = models.CharField(max_length=100)
+    projects = models.ManyToManyField('Project', related_name='stack')
+    name = models.CharField(max_length=100)
     icon = models.ImageField(upload_to='icon_stack')
-    description = models.TextField(max_length=1000)
+    category = models.CharField(max_length=100, choices=STACKS_CATEGORY)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self) -> str:
-        return self.title.title()
+        return self.name.title()

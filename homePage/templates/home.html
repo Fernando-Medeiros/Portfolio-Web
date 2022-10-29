@@ -10,15 +10,36 @@
     <!-- ABOUT -->
     <section id="about" class="w-full h-screen">
 
-        <div class="container m-auto grid grid-cols-2 w-full h-screen">
+        <!-- CONTACT -->
+        <div class="container m-auto flex flex-row justify-end items-center w-full h-auto gap-6 p-2 text-gray-400 mb-5">
+            <a href="https://github.com/Fernando-Medeiros" target="blank"
+            class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
+                <ion-icon name="logo-github" class="text-4xl"></ion-icon>
+            </a>
+
+            <a href="https://www.linkedin.com/in/fernando-de-alvarenga-medeiros-037306207/" target="blank"
+            class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
+                <ion-icon name="logo-linkedin" class="text-4xl"></ion-icon>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UC4DtvxaUeEZHmqafh5mSOLg" target="blank"
+            class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
+                <ion-icon name="logo-youtube" class="text-4xl"></ion-icon>
+            </a>
+        </div>
+
+
+        <div class="container m-auto grid grid-cols-2 w-full h-auto">
             
             <span class="items-center text-center m-auto">
                 Bem vindo ao meu Portfólio
             </span>
-    
+            
+
+            <!-- PROFILE -->
             <div class="flex flex-col justify-center items-center text-center gap-5 p-2">
                 <img class="rounded-full w-80" src="https://github.com/Fernando-Medeiros.png">
-                <span> Fernando A. Medeiros </span>
+                <span> {{ user }} </span>
             </div>
 
         </div>
@@ -30,66 +51,113 @@
     <!-- STACKS -->
     <section id="stacks" class="w-full h-screen">
 
-        <div class="container m-auto grid grid-row-2 w-full h-screen">
+        <div class="container m-auto grid grid-row-auto w-full h-auto gap-5">
 
-            <div class="flex flex-row flex-wrap justify-between items-center">
-                <img width="48px" src="https://img.icons8.com/color/344/python--v1.png">
-                <img width="48px" src="https://findicons.com/files/icons/2773/pictonic_free/128/prog_django.png">
-                <img width="48px" src="https://img.icons8.com/color/344/flask.png">
-    
-                <img width="48px" src="https://img.icons8.com/color/344/javascript--v1.png">
-                <img width="48px" src="https://img.icons8.com/color/344/html-5--v1.png">
-                <img width="48px" src="https://img.icons8.com/color/344/css3.png">
-    
-                <img width="48px" src="https://img.icons8.com/color/344/postgreesql.png">
-                <img width="48px" src="https://img.icons8.com/color/344/mysql-logo.png">
-                <img width="48px" src="https://img.icons8.com/color/452/mongodb.png">
+            <!-- STACKS -->
+            <div class="grid grid-row-2 items-center w-full h-auto">
+                <h1 class="p-2">
+                    Stacks
+                </h1>
+                <div class="flex flex-row flex-wrap justify-around items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
+
+                    {% for stack in allStacks %}
+                        {% if stack.category != 'LIBS' %}
+                            <img width="58px" src="{{ stack.icon.url }}" class="p-1">
+                        {% endif %}
+                    {% endfor %}
+                    
+                </div>
             </div>
             
-            <p>Tecnologias</p>
+            <!-- ACADEMY -->
+            <div class="grid grid-row-2 items-center w-full h-auto">
+                <h1 class="p-2">
+                    Formação
+                </h1>
 
+                <div class="flex flex-row flex-wrap items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
+                    <ul>
+                        <li>
+                            Desenvolvimento Back-end na Unopar 01/2022 ~ 12/2023
+                        </li>
+                        <li>
+                            Curso Henry Hi-Tech [Ensino Médio] 01/2017 ~ 12/2019
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CURSOS -->
+            <div class="grid grid-row-2 items-center w-full h-auto">
+                <h1 class="p-2">
+                    Cursos
+                </h1>
+
+                <div class="flex flex-row flex-wrap items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
+                    <ul>
+                        <li>
+                            Hashtag Treinamentos [Python Impressionador] 05/2022 ~ 05/2023 
+                        </li>
+                        <li>
+                            Bootcamp Dio - Linux Experience 07/2022
+                        </li>
+                        <li>
+                            Python Mundo 1,2 e 3 do Gustavo Guanabara 04/2022 ~ 05/2022
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-
     </section>
 
 
 
-    <!-- PERSONAL PROJECTS -->
+
+    <!-- PROJECTS -->
     <section id="projects" class="w-full h-auto">
        
-        <div class="container m-auto grid grid-row-auto w-auto h-auto gap-10">
+        <div class="container m-auto flex flex-row-auto flex-wrap  text-center justify-around w-full h-auto gap-10">
 
             {% for project in allProjects %}
 
-                    <div class="flex flex-col items-center h-auto w-full gap-8 p-2">
+                    <div class="flex flex-col justify-around items-center h-auto w-auto max-w-[500px] gap-7 p-2 border border-yellow-50/5 bg-black/5 rounded
+                                transition ease-in-out delay-150 hover:-translate-y-1 hover:border-yellow-500/25 scale-100 hover: duration-300">
                         
+
                         <img src="{{ project.template.url }}" class="rounded-lg w-auto h-auto object-cover">
-                        <h1 class="text-2xl">
-                            {{ project.title }}
-                        </h1>
-                        <p class="text-lg">
-                            {{ project.description }}
-                        </p>
 
+                        <h1 class="text-2xl"> {{ project.title }} </h1>
 
-                        <div class="flex flex-row justify-end gap-10 w-full">
-                            <a href="{{project.github}}" target="blank"
-                            class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300">
-                                <ion-icon name="logo-github" class="text-4xl"></ion-icon>                    
-                            </a>
+                        <p class="text-lg"> {{ project.description }} </p>                
+                        
+                     
+                        <div class="flex flex-row justify-between items-center gap-10 w-full p-2 border border-yellow-50/5 bg-violet-500/5 rounded">
 
-                            <a href="{{project.link}}" target="blank"
-                            class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300">
-                                <ion-icon name="link-outline" class="text-4xl"></ion-icon>    
-                            </a>
-                        </div>
+                            <!-- STACKS -->
+                            <div class="flex flex-row flex-wrap justify-around gap-1 w-full">
+                                {% for stack in project.stack.all %}
+                                    <img width="38px" src="{{ stack.icon.url }}" class="p-1">
+                                {% endfor %}
+                            </div>
 
+                             <!-- LINKS -->
+                            <div class="flex flex-row items-center gap-7 w-auto h-auto">
+                                <a href="{{ project.github }}" target="blank"
+                                class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
+                                    <ion-icon name="logo-github" class="text-4xl"></ion-icon>                    
+                                </a>
+    
+                                <a href="{{ project.link }}" target="blank"
+                                class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
+                                    <ion-icon name="link-outline" class="text-4xl"></ion-icon>    
+                                </a>
+                            </div>
+                        </div>                        
                     </div>
             {% endfor %}
 
         </div>
     </section>
-
 </main>
 
 
