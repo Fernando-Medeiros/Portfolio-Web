@@ -23,7 +23,7 @@ function activateMobileMenu() {
 
     window.onresize = () => {
 
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 768) {
 
             if (!id_routes.classList.value.includes('hidden')) {
 
@@ -44,7 +44,7 @@ function activateMobileMenu() {
 
     // when refreshing the page
 
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 768) {
 
         if (!button_menu.classList.value.includes('active')) {
             navbar.classList.toggle('h-auto')

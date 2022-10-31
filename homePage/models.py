@@ -14,6 +14,7 @@ STACKS_CATEGORY = (
 
 
 class Project(models.Model):
+    user = models.ForeignKey('authUser.UserModel', related_name='project', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     template = models.ImageField(upload_to='project_templates')
     description = models.TextField(max_length=1000)

@@ -76,8 +76,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'homePage.context.all_projects',
                 'homePage.context.all_stacks',
+                'authUser.context.user_detail'
             ],
         },
     },

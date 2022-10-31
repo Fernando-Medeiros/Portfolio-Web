@@ -4,25 +4,26 @@
 
 {% block content%}
 
-<main class="m-auto p-3 flex flex-col gap-10">
+<main class="m-auto p-3 flex flex-col gap-20
+            md:ml-20">
     
 
     <!-- ABOUT -->
-    <section id="about" class="w-full h-screen">
+    <section id="about" class="w-full h-auto">
 
         <!-- CONTACT -->
         <div class="container m-auto flex flex-row justify-end items-center w-full h-auto gap-6 p-2 text-gray-400 mb-5">
-            <a href="https://github.com/Fernando-Medeiros" target="blank"
+            <a href="{{ userDetail.detail.first.github }}" target="blank"
             class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
                 <ion-icon name="logo-github" class="text-4xl"></ion-icon>
             </a>
 
-            <a href="https://www.linkedin.com/in/fernando-de-alvarenga-medeiros-037306207/" target="blank"
+            <a href="{{ userDetail.detail.first.linkedin }}" target="blank"
             class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
                 <ion-icon name="logo-linkedin" class="text-4xl"></ion-icon>
             </a>
 
-            <a href="https://www.youtube.com/channel/UC4DtvxaUeEZHmqafh5mSOLg" target="blank"
+            <a href="{{ userDetail.detail.first.youtube }}" target="blank"
             class="transition ease-in-out delay-150 hover:text-white -translate-y-1 hover:scale-110 hover: duration-300">
                 <ion-icon name="logo-youtube" class="text-4xl"></ion-icon>
             </a>
@@ -32,14 +33,14 @@
         <div class="container m-auto grid grid-cols-2 w-full h-auto">
             
             <span class="items-center text-center m-auto">
-                Bem vindo ao meu Portfólio
+               {{ userDetail.detail.first.about }} 
             </span>
             
 
             <!-- PROFILE -->
             <div class="flex flex-col justify-center items-center text-center gap-5 p-2">
-                <img class="rounded-full w-80" src="https://github.com/Fernando-Medeiros.png">
-                <span> {{ user }} </span>
+                <img class="rounded-full w-80" src="{{ userDetail.detail.first.photo.url }}">
+                <span> {{ userDetail }} </span>
             </div>
 
         </div>
@@ -49,7 +50,8 @@
 
 
     <!-- STACKS -->
-    <section id="stacks" class="w-full h-screen">
+    <section id="stacks" class="w-full h-auto
+                                md:h-auto">
 
         <div class="container m-auto grid grid-row-auto w-full h-auto gap-5">
 
@@ -59,10 +61,10 @@
                     Stacks
                 </h1>
                 <div class="flex flex-row flex-wrap justify-around items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
-
+                   
                     {% for stack in allStacks %}
                         {% if stack.category != 'LIBS' %}
-                            <img width="58px" src="{{ stack.icon.url }}" class="p-1">
+                            <img src="{{ stack.icon.url }}" class="p-1 w-[38px] md:w-[58px] p-0">
                         {% endif %}
                     {% endfor %}
                     
@@ -75,15 +77,22 @@
                     Formação
                 </h1>
 
-                <div class="flex flex-row flex-wrap items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
-                    <ul>
-                        <li>
-                            Desenvolvimento Back-end na Unopar 01/2022 ~ 12/2023
-                        </li>
-                        <li>
-                            Curso Henry Hi-Tech [Ensino Médio] 01/2017 ~ 12/2019
-                        </li>
-                    </ul>
+                <div class="flex flex-col flex-wrap w-full h-auto gap-2 p-2 border border-yellow-50/5">
+                    
+                    {% for formation in userDetail.formation.all %}
+                    
+                        <span class="flex flex-row gap-5">
+                            {{formation.name}}
+                            
+                            <div class="flex flex-row gap-4">
+                                <p> {{formation.start.month}} / {{formation.start.year}} </p>
+                                ~
+                                <p> {{formation.end.month}} / {{formation.end.year}} </p>
+                            </div>
+
+                        </span>
+                    {% endfor %}
+
                 </div>
             </div>
 
@@ -93,20 +102,24 @@
                     Cursos
                 </h1>
 
-                <div class="flex flex-row flex-wrap items-center w-full h-auto gap-2 p-2 border border-yellow-50/5">
-                    <ul>
-                        <li>
-                            Hashtag Treinamentos [Python Impressionador] 05/2022 ~ 05/2023 
-                        </li>
-                        <li>
-                            Bootcamp Dio - Linux Experience 07/2022
-                        </li>
-                        <li>
-                            Python Mundo 1,2 e 3 do Gustavo Guanabara 04/2022 ~ 05/2022
-                        </li>
-                    </ul>
+                <div class="flex flex-col flex-wrap w-full h-auto gap-2 p-2 border border-yellow-50/5">
+                    
+                    {% for course in userDetail.course.all %}
+                    
+                        <span class="flex flex-row gap-5">
+                            {{course.name}}
+
+                            <div class="flex flex-row gap-4">
+                                <p> {{course.start.month}} / {{course.start.year}} </p>
+                                ~
+                                <p> {{course.end.month}} / {{course.end.year}} </p>
+                            </div>
+
+                        </span>
+                    {% endfor %}
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -116,12 +129,13 @@
     <!-- PROJECTS -->
     <section id="projects" class="w-full h-auto">
        
-        <div class="container m-auto flex flex-row-auto flex-wrap  text-center justify-around w-full h-auto gap-10">
+        <div class="container m-auto flex flex-row-auto flex-wrap  text-center justify-around w-full h-auto gap-10 border border-yellow-50/5 p-2">
 
-            {% for project in allProjects %}
+            {% for project in userDetail.project.all %}
 
-                    <div class="flex flex-col justify-around items-center h-auto w-auto max-w-[500px] gap-7 p-2 border border-yellow-50/5 bg-black/5 rounded
-                                transition ease-in-out delay-150 hover:-translate-y-1 hover:border-yellow-500/25 scale-100 hover: duration-300">
+                    <div class="flex flex-col justify-around items-center h-auto w-auto gap-7 p-2 border border-yellow-50/5 bg-black/5 rounded
+                                transition ease-in-out delay-150 hover:-translate-y-1 hover:border-yellow-500/25 scale-100 hover: duration-300
+                                md: max-w-[360px]">
                         
 
                         <img src="{{ project.template.url }}" class="rounded-lg w-auto h-auto object-cover">
@@ -155,9 +169,9 @@
                         </div>                        
                     </div>
             {% endfor %}
-
         </div>
     </section>
+
 </main>
 
 
