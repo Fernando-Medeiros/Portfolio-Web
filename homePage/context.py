@@ -1,4 +1,4 @@
-from .models import Project, Stack
+from .models import Stack
 
 
 def all_stacks(request):
