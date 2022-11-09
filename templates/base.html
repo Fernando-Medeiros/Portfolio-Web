@@ -7,7 +7,7 @@
                         
         <title>
             {% block title %}
-            {{ title }}
+            {{ title }} | Portfolio
             {% endblock %}
         </title>
 
@@ -32,14 +32,14 @@
         {% include 'footer.html'%}
                 
         {% block script %}
+        {% endblock %}
+
         <script type="text/javascript" src="/static/js/navbar.js"></script>
-        
         <script type="text/javascript" src="/static/js/text_effect.js"></script>
 
         <!-- IONICONS -->
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        {% endblock %}
 
     </body>
 <html>
