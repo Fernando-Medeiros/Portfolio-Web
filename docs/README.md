@@ -11,6 +11,7 @@
 <br>
 
 # Portfolio-Web
+
 ### PT
 Portfólio Web desenvolvido com Python/Django.
 
@@ -27,11 +28,10 @@ I developed this project to present myself professionally, and share my personal
 
 This is also my first project with Django, I developed it to be scalable for new projects, formations, specializations and technologies, being only necessary to enter the Admin and persist new data, and for that I am using Google Cloud Sql's PostgreSql database.
 
-<br>
 
 ## HomePage
 
-<hr>
 <div align="center">
-    <img src="static/readme-assets/template_portfolio.png">
+    <img src="img/template_portfolio.png">
 </div>
+
