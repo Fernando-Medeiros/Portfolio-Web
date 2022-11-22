@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-
 STACKS_CATEGORY = (
     ('BACKEND', 'Back-end'),
     ('FRONTEND', 'Front-end'),

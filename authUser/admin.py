@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import UserModel, UserDetail, Formation, Course, Experience
-
+from .models import Course, Experience, Formation, UserDetail, UserModel
 
 admin.site.register(UserModel, UserAdmin)
 admin.site.register(UserDetail)

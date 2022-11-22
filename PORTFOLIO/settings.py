@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 import environ
+
 # Initialise environment variables
-env = environ.Env()
 environ.Env.read_env()
 
 
@@ -26,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.get_value('SECRET_KEY')
+SECRET_KEY: str = os.getenv('SECRET_KEY', "DON'T FORGET THE SECRET KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(env.get_value('DEBUG'))
+DEBUG: bool = bool(os.getenv('DEBUG', 'False'))
 
-ALLOWED_HOSTS = list(env.get_value('ALLOWED_HOSTS').split(';'))
+ALLOWED_HOSTS: list = list(os.getenv('ALLOWED_HOSTS', '127.0.0.1').split(';'))
 
 
 # Application definition
@@ -100,10 +100,10 @@ WSGI_APPLICATION = 'PORTFOLIO.wsgi.application'
 DATABASE_GOOGE_CLOUD_POSTGRESQL =  {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': env.get_value('DATABASE_HOST'),
-        'USER': env.get_value('DATABASE_USERNAME'),
-        'PASSWORD': env.get_value('DATABASE_PASSWORD'),
-        'NAME': env.get_value('DATABASE_NAME'),
+        'HOST': os.getenv('DATABASE_HOST', 'None'),
+        'USER': os.getenv('DATABASE_USERNAME', 'None'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'None'),
+        'NAME': os.getenv('DATABASE_NAME', 'None'),
     }
 }
 
@@ -165,9 +165,9 @@ LOGIN_URL = 'authUser:login'
 
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env.get_value('CLOUD_NAME'),
-    'API_KEY': env.get_value('API_KEY'),
-    'API_SECRET': env.get_value('API_SECRET')
+    'CLOUD_NAME': os.getenv('CLOUD_NAME', 'None'),
+    'API_KEY': os.getenv('API_KEY', 'None'),
+    'API_SECRET': os.getenv('API_SECRET', 'None')
     }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
